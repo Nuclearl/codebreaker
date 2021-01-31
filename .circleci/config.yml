@@ -6,8 +6,6 @@ executors:
     description: The official CircleCI Ruby Docker image
     docker:
       - image: circleci/ruby:2.5.1
-        environment: 
-          RAILS_ENV: test
 
 cashes:
   - &bundle_caches_v1 v2-repo-{{ checksum "Gemfile.lock" }}
@@ -29,7 +27,7 @@ commands:
 
 jobs:
   lintering:
-    executer: default
+    executor: default
     steps:
       - defaults
 
