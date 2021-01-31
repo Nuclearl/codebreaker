@@ -36,7 +36,8 @@ commands:
       
   run_specs:
     steps: 
-      - run: run specs
+      - run: 
+          name: run specs
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
@@ -61,5 +62,6 @@ workflows:
   build:
     jobs:
       - lintering
+      - run_specs
 
     
