@@ -27,7 +27,7 @@ commands:
           key: *bundle_cache
           paths:
             - vendor/bundle
-  run_linterls:
+  run_linters:
     description: command to start linters
     steps:
       - run:
