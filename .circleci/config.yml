@@ -27,16 +27,39 @@ commands:
           key: *bundle_cache
           paths:
             - vendor/bundle
+  run_linterls:
+    description: command to start linters
+    steps:
+      - run:
+          name: rubucop
+          command: bundle exec rubucop
+      
+  run_specs:
+    steps: 
+      - run: run specs
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
+                              --out /tmp/test-results/rspec.xml \
+                              $TEST_FILES
 
 jobs:
   lintering:
     executor: default
     steps:
       - defaults
+      - run_linters
+  run_specs:
+    executor: default
+    steps:
+      - defaults
+      - run_specs
 
 workflows:
   version: 2.1
   build:
     jobs:
       - lintering
+
     
