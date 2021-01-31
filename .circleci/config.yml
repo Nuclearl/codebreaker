@@ -32,7 +32,7 @@ commands:
     steps:
       - run:
           name: rubucop
-          command: bundle exec rubucop
+          command: bundle exec rubocop
       
   run_specs:
     steps: 
