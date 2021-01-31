@@ -1,9 +1,18 @@
+require_relative './lib/player/player'
+
 module Codebreaker
   class Game
+    DIFFICULTIES = {
+        easy: {attemts: 15, hints: 2},
+        medium: {attemts: 10, hints: 1},
+        hell: {attemts: 5, hints: 1}
+    }
+    
     def initialize
       @range = (1..6)
       @length = 4
       @secret_code = ''
+      @player = Player.new()
     end
 
     def start
