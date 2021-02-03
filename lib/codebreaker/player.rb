@@ -1,9 +1,9 @@
 class Player
-  attr_accessor :name, :attemts, :hints
+  attr_accessor :name, :attempts, :hints
 
   def initialize
     @name = ''
-    @attemts = 0
+    @attempts = 0
     @hints = 0
   end
 end

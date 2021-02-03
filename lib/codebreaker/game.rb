@@ -5,9 +5,9 @@ module Codebreaker
 
   class Game
     DIFFICULTIES = {
-      easy: { attemts: 15, hints: 2 },
-      medium: { attemts: 10, hints: 1 },
-      hell: { attemts: 5, hints: 1 }
+      easy: { attempts: 15, hints: 2 },
+      medium: { attempts: 10, hints: 1 },
+      hell: { attempts: 5, hints: 1 }
     }.freeze
 
     def initialize
@@ -34,7 +34,7 @@ module Codebreaker
     end
 
     def assign_difficulty(difficluty)
-      @player.attemts = DIFFICULTIES[difficluty][:attemts]
+      @player.attempts = DIFFICULTIES[difficluty][:attempts]
       @player.hints = DIFFICULTIES[difficluty][:hints]
     end
 
@@ -52,11 +52,11 @@ module Codebreaker
     end
 
     def dec_attempts
-      @player.attemts -= 1
+      @player.attempts -= 1
     end
 
-    def attemts
-      @player.attemts
+    def attempts
+      @player.attempts
     end
 
     private
