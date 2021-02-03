@@ -1,9 +1,10 @@
 require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
-  attr_reader :secret_code
 
   class Game
+    attr_reader :secret_code
+
     DIFFICULTIES = {
       easy: { attempts: 15, hints: 2 },
       medium: { attempts: 10, hints: 1 },

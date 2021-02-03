@@ -4,4 +4,4 @@ game = Codebreaker::Game.new
 
 game.start
 
-print game.matrix_generator('1234')
+print game.secret_code
