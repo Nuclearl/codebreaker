@@ -2,7 +2,7 @@ require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
   include Errors
-  
+
   class Game
     DIFFICULTIES = {
       easy: { attemts: 15, hints: 2 },
@@ -39,7 +39,7 @@ module Codebreaker
     end
 
     def set_name(name)
-      validate_name!
+      validate_name!(name)
       @player.name = name
     end
 
