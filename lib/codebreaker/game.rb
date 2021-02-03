@@ -33,14 +33,30 @@ module Codebreaker
       hint
     end
 
-    def set_difficulty(difficluty)
+    def assign_difficulty(difficluty)
       @player.attemts = DIFFICULTIES[difficluty][:attemts]
-      @palyer.hints = DIFFICULTIES[difficluty][:hints]
+      @player.hints = DIFFICULTIES[difficluty][:hints]
     end
 
-    def set_name(name)
+    def assign_name(name)
       validate_name!(name)
       @player.name = name
+    end
+
+    def dec_hints
+      @player.hints -= 1
+    end
+
+    def hints
+      @player.hints
+    end
+
+    def dec_attempts
+      @player.attemts -= 1
+    end
+
+    def attemts
+      @player.attemts
     end
 
     private
@@ -71,11 +87,11 @@ module Codebreaker
     end
 
     def validate_name!(name)
-      raise Errors::LengthError if name.length<3 || name.length > 20
+      raise Errors::LengthError if name.length < 3 || name.length > 20
     end
 
     def validate_guess!(guess)
-      raise Errors::LengthError if  guess.length != 4
+      raise Errors::LengthError if guess.length != 4
       raise Errors::InputError unless guess.match(/[1-6]+/)
     end
   end
