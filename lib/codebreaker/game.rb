@@ -1,7 +1,7 @@
 require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
-  # include Errors
+  attr_reader :secret_code
 
   class Game
     DIFFICULTIES = {

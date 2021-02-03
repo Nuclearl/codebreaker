@@ -2,4 +2,6 @@ require_relative 'game'
 
 game = Codebreaker::Game.new
 
-game.set_name('ff')
+game.start
+
+print game.matrix_generator('1234')
