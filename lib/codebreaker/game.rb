@@ -20,7 +20,7 @@ module Codebreaker
 
     def start
       @secret_code = @range.map(&:to_s).sample(@length).join
-      @hints = @secret_code
+      @hints = @secret_code.dup
     end
 
     def matrix_generator(inputed_guess)
