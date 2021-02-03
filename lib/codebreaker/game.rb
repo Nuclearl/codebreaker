@@ -1,7 +1,7 @@
 require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
-  include Errors
+  # include Errors
 
   class Game
     DIFFICULTIES = {
@@ -71,12 +71,12 @@ module Codebreaker
     end
 
     def validate_name!(name)
-      raise LengthError if name.length<3 || name.length > 20
+      raise Errors::LengthError if name.length<3 || name.length > 20
     end
 
     def validate_guess!(guess)
-      raise LengthError if  guess.length != 4
-      raise InputError unless guess.match(/[1-6]+/)
+      raise Errors::LengthError if  guess.length != 4
+      raise Errors::InputError unless guess.match(/[1-6]+/)
     end
   end
 end
