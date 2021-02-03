@@ -1,3 +1,5 @@
+require_relative 'player'
+require_relative 'errors/errors'
 module Codebreaker
   class Game
     DIFFICULTIES = {
@@ -10,6 +12,7 @@ module Codebreaker
       @range = (1..6)
       @length = 4
       @secret_code = ''
+      @player = Player.new
     end
 
     def start
@@ -18,6 +21,7 @@ module Codebreaker
     end
 
     def matrix_generator(inputed_guess)
+      validate_guess!(inputed_guess)
       check_for_inclusion_in_matrix(*check_position_in_matrix(inputed_guess))
     end
 
@@ -25,6 +29,16 @@ module Codebreaker
       hint = @hints.split('').sample
       @hints.sub!(hint, '')
       hint
+    end
+
+    def set_difficulty(difficluty)
+      @player.attemts = DIFFICULTIES[difficluty][:attemts]
+      @palyer.hints = DIFFICULTIES[difficluty][:hints]
+    end
+
+    def set_name(name)
+      validate_name!
+      @player.name = name
     end
 
     private
@@ -52,6 +66,15 @@ module Codebreaker
         end
       end
       matrix
+    end
+
+    def validate_name!(name)
+      raise LengthError if name.length<3 || name.length > 20
+    end
+
+    def validate_guess!(guess)
+      raise LengthError if  guess.length != 4
+      raise InputError unless guess.match(/[1-6]+/)
     end
   end
 end
