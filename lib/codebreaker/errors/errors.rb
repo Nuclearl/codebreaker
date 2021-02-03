@@ -4,10 +4,10 @@ module Errors
         super
       end
     end
-    
+
     class InputError < StandardError
         def initialize(msg = 'Incorrect value inputted')
           super
         end
     end 
-  end
+end

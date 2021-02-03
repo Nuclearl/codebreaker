@@ -1,6 +1,8 @@
 require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
+  include Errors
+  
   class Game
     DIFFICULTIES = {
       easy: { attemts: 15, hints: 2 },
