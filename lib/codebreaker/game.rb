@@ -17,6 +17,7 @@ module Codebreaker
       @name = ''
       @attempts = 0
       @hints = 0
+      @difficulty = 0
     end
 
     def start
@@ -36,9 +37,10 @@ module Codebreaker
       hint
     end
 
-    def assign_difficulty(difficluty)
-      @attempts = DIFFICULTIES[difficluty][:attempts]
-      @hints = DIFFICULTIES[difficluty][:hints]
+    def assign_difficulty(difficulty)
+      @attempts = DIFFICULTIES[difficulty][:attempts]
+      @hints = DIFFICULTIES[difficulty][:hints]
+      @difficulty = DIFFICULTIES.keys().index(difficulty)
     end
 
     def assign_name(name)
