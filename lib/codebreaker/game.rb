@@ -1,7 +1,7 @@
 require_relative 'errors/errors'
 module Codebreaker
   class Game
-    attr_reader :secret_code
+    attr_reader :secret_code, :difficulty, :attempts, :hints
 
     RANGE_SECRET_CODE = (1..6).freeze
     LENGTH_SECRET_CODE = 4
