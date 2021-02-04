@@ -1,9 +1,11 @@
 require_relative 'player'
 require_relative 'errors/errors'
 module Codebreaker
-
   class Game
     attr_reader :secret_code
+
+    RANGE_SECRET_CODE = (1..6).freeze
+    LENGTH_SECRET_CODE = 4
 
     DIFFICULTIES = {
       easy: { attempts: 15, hints: 2 },
@@ -12,15 +14,15 @@ module Codebreaker
     }.freeze
 
     def initialize
-      @range = (1..6)
-      @length = 4
       @secret_code = ''
-      @player = Player.new
+      @name = ''
+      @attempts = 0
+      @hints = 0
     end
 
     def start
-      @secret_code = @range.map(&:to_s).sample(@length).join
-      @hints = @secret_code.dup
+      @secret_code = RANGE_SECRET_CODE.map(&:to_s).sample(LENGTH_SECRET_CODE).join
+      @available_hints = @secret_code.dup
     end
 
     def matrix_generator(inputed_guess)
@@ -29,35 +31,32 @@ module Codebreaker
     end
 
     def set_hint
-      hint = @hints.split('').sample
-      @hints.sub!(hint, '')
+      hint = @available_hints.split('').sample
+      @available_hints.sub!(hint, '')
+      @hints -= 1
       hint
     end
 
     def assign_difficulty(difficluty)
-      @player.attempts = DIFFICULTIES[difficluty][:attempts]
-      @player.hints = DIFFICULTIES[difficluty][:hints]
+      @attempts = DIFFICULTIES[difficluty][:attempts]
+      @hints = DIFFICULTIES[difficluty][:hints]
     end
 
     def assign_name(name)
       validate_name!(name)
-      @player.name = name
-    end
-
-    def dec_hints
-      @player.hints -= 1
-    end
-
-    def hints
-      @player.hints
+      @name = name
     end
 
     def dec_attempts
-      @player.attempts -= 1
+      @attempts -= 1
     end
 
-    def attempts
-      @player.attempts
+    def present_hints
+      @hints.positive?
+    end
+
+    def present_attempts
+      @attempts.positive?
     end
 
     private
@@ -65,7 +64,7 @@ module Codebreaker
     def check_position_in_matrix(inputed_guess)
       matrix = ''
       unnecessary_char = ''
-      (0...@length).reverse_each do |index|
+      (0...LENGTH_SECRET_CODE).reverse_each do |index|
         next unless inputed_guess[index] == @secret_code[index]
 
         matrix += '+'
