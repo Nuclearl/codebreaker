@@ -40,7 +40,7 @@ module Codebreaker
     def assign_difficulty(difficulty)
       @attempts = DIFFICULTIES[difficulty][:attempts]
       @hints = DIFFICULTIES[difficulty][:hints]
-      @difficulty = DIFFICULTIES.keys().index(difficulty)
+      @difficulty = DIFFICULTIES.keys.index(difficulty)
     end
 
     def assign_name(name)
@@ -58,6 +58,15 @@ module Codebreaker
 
     def present_attempts
       @attempts >= DIFFICULTIES.values[difficulty][:attempts]
+    end
+
+    def statistics(games)
+      total_results = get_total_results(games)
+      games.sort_by(&:hints).sort_by(&:attempts).sort_by(&:difficulty).reverse!
+      games.each_with_index.map do |game, index, name = game.name|
+        [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
+         game.hints]
+      end
     end
 
     private
@@ -94,6 +103,12 @@ module Codebreaker
     def validate_guess!(guess)
       raise Errors::LengthError if guess.length != 4
       raise Errors::InputError unless guess.match(/[1-6]+/)
+    end
+
+    def get_total_results(games)
+      games.group_by(&:name).transform_values do |grouped_games|
+        { attemts: grouped_games.collect(&:attempts).sum, hints: grouped_games.collect(&:hints).sum }
+      end
     end
   end
 end
