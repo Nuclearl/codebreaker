@@ -48,16 +48,16 @@ module Codebreaker
       @name = name
     end
 
-    def dec_attempts
-      @attempts -= 1
+    def inc_attempts
+      @attempts += 1
     end
 
     def present_hints
-      @hints.positive?
+      @hints >= DIFFICULTIES.values[difficulty][:attempts]
     end
 
     def present_attempts
-      @attempts.positive?
+      @attempts >= DIFFICULTIES.values[difficulty][:attempts]
     end
 
     private
