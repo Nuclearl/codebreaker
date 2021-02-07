@@ -27,6 +27,7 @@ module Codebreaker
 
     def matrix_generator(inputed_guess)
       validate_guess!(inputed_guess)
+      @attempts += 1
       check_for_inclusion_in_matrix(*check_position_in_matrix(inputed_guess))
     end
 
@@ -46,10 +47,6 @@ module Codebreaker
     def assign_name(name)
       validate_name!(name)
       @name = name
-    end
-
-    def inc_attempts
-      @attempts += 1
     end
 
     def present_hints
