@@ -57,7 +57,7 @@ module Codebreaker
 
     def statistics(games)
       total_results = get_total_results(games)
-      games.sort_by(&:hints).sort_by(&:attempts).sort_by {|game| -game.difficulty}
+      games = games.sort_by(&:hints).sort_by(&:attempts).sort_by {|game| -game.difficulty}
       games.each_with_index.map do |game, index, name = game.name|
         [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
          game.hints]
