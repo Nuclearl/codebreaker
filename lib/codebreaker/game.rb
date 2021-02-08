@@ -34,7 +34,7 @@ module Codebreaker
     def set_hint
       hint = @available_hints.split('').sample
       @available_hints.sub!(hint, '')
-      @hints -= 1
+      @hints += 1
       hint
     end
 
@@ -50,11 +50,11 @@ module Codebreaker
     end
 
     def present_hints
-      @hints <= DIFFICULTIES.values[difficulty][:attempts]
+      @hints < DIFFICULTIES.values[difficulty][:attempts]
     end
 
     def present_attempts
-      @attempts <= DIFFICULTIES.values[difficulty][:attempts]
+      @attempts < DIFFICULTIES.values[difficulty][:attempts]
     end
 
     def statistics(games)
