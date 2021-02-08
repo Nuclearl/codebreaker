@@ -39,8 +39,6 @@ module Codebreaker
     end
 
     def assign_difficulty(difficulty)
-      @attempts = DIFFICULTIES[difficulty][:attempts]
-      @hints = DIFFICULTIES[difficulty][:hints]
       @difficulty = DIFFICULTIES.keys.index(difficulty)
     end
 
