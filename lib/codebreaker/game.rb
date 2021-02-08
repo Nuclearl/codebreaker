@@ -48,11 +48,11 @@ module Codebreaker
     end
 
     def present_hints
-      @hints < DIFFICULTIES.values[difficulty][:attempts]
+      @hints <= DIFFICULTIES.values[difficulty][:hints]
     end
 
     def present_attempts
-      @attempts < DIFFICULTIES.values[difficulty][:attempts]
+      @attempts <= DIFFICULTIES.values[difficulty][:attempts]
     end
 
     def statistics(games)
