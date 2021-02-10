@@ -1,6 +1,10 @@
-require_relative 'errors/errors'
+require_relative 'validation/errors'
+require_relative 'validation/validatable'
+
 module Codebreaker
   class Game
+    include Validatable
+
     attr_reader :secret_code, :difficulty, :attempts, :hints, :name
 
     RANGE_SECRET_CODE = (1..6).freeze
@@ -32,6 +36,8 @@ module Codebreaker
     end
 
     def set_hint
+      return ' ' if @available_hints.empty?
+
       hint = @available_hints.split('').sample
       @available_hints.sub!(hint, '')
       @hints += 1
@@ -52,16 +58,12 @@ module Codebreaker
     end
 
     def present_attempts
-      @attempts <= DIFFICULTIES.values[difficulty][:attempts]
+      @attempts < DIFFICULTIES.values[difficulty][:attempts]
     end
 
     def statistics(games)
-      total_results = get_total_results(games)
-      games = games.sort_by(&:hints).sort_by(&:attempts).sort_by {|game| -game.difficulty}
-      games.each_with_index.map do |game, index, name = game.name|
-        [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
-         game.hints]
-      end
+      games = games.sort_by(&:hints).sort_by(&:attempts).sort_by { |game| -game.difficulty }
+      grouping_statistics(games)
     end
 
     private
@@ -91,18 +93,17 @@ module Codebreaker
       matrix
     end
 
-    def validate_name!(name)
-      raise Errors::LengthError if name.length < 3 || name.length > 20
-    end
-
-    def validate_guess!(guess)
-      raise Errors::LengthError if guess.length != 4
-      raise Errors::InputError unless guess.match(/[1-6]+/)
-    end
-
     def get_total_results(games)
       games.group_by(&:name).transform_values do |grouped_games|
         { attemts: grouped_games.collect(&:attempts).sum, hints: grouped_games.collect(&:hints).sum }
+      end
+    end
+
+    def grouping_statistics(games)
+      total_results = get_total_results(games)
+      games.each_with_index.map do |game, index, name = game.name|
+        [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
+         game.hints]
       end
     end
   end
