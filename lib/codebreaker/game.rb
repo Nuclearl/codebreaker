@@ -101,7 +101,7 @@ module Codebreaker
 
     def grouping_statistics(games)
       total_results = get_total_results(games)
-      games.each_with_index.map do |game, index, name = game.name|
+      games.map.with_index do |game, index, name = game.name|
         [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
          game.hints]
       end
