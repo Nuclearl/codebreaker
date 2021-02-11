@@ -33,6 +33,8 @@ commands:
       - run:
           name: rubucop
           command: bundle exec rubocop
+          exclude_paths:
+            - 'vendor/**/*.rb'
       - run:
           name: fasterer
           command: bundle exec fasterer
