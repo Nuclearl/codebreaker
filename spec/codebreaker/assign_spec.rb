@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 module Codebreaker
   RSpec.describe Game do
     let(:game) { Game.new }
