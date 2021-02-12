@@ -51,6 +51,7 @@ commands:
                               $TEST_FILES
       - store_artifacts:
           path: /home/circleci/repo/coverage
+          path: /tmp/test-results
 
 jobs:
   lintering:
