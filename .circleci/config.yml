@@ -50,9 +50,7 @@ commands:
                               --out /tmp/test-results/rspec.xml \
                               $TEST_FILES
       - store_artifacts:
-          paths: 
-            - /home/circleci/repo/coverage
-            - /tmp/test-results
+          path: [/home/circleci/repo/coverage, /tmp/test-results] 
 
 jobs:
   lintering:
