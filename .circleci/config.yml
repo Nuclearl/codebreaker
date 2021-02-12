@@ -36,6 +36,7 @@ commands:
       - run:
           name: fasterer
           command: bundle exec fasterer
+        
           
       
   run_specs:
@@ -48,6 +49,8 @@ commands:
             bundle exec rspec --format progress \
                               --out /tmp/test-results/rspec.xml \
                               $TEST_FILES
+      - store_artifacts:
+          path: /home/circleci/repo/coverage
 
 jobs:
   lintering:
