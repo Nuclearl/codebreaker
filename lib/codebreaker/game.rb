@@ -29,16 +29,16 @@ module Codebreaker
       @available_hints = @secret_code.dup
     end
 
-    def matrix_generator(inputed_guess)
-      validate_guess!(inputed_guess)
+    def matrix_generator(inputted_guess)
+      validate_guess!(inputted_guess)
       @attempts += 1
-      check_for_inclusion_in_matrix(*check_position_in_matrix(inputed_guess))
+      check_position_in_matrix(inputted_guess)
     end
 
     def set_hint
       return ' ' if @available_hints.empty?
 
-      hint = @available_hints.split('').sample
+      hint = @available_hints.chars.sample
       @available_hints.sub!(hint, '')
       @hints += 1
       hint
@@ -61,50 +61,31 @@ module Codebreaker
       @attempts < DIFFICULTIES.values[difficulty][:attempts]
     end
 
-    def statistics(games)
-      games = games.sort_by(&:hints).sort_by(&:attempts).sort_by { |game| -game.difficulty }
-      grouping_statistics(games)
-    end
-
     private
 
-    def check_position_in_matrix(inputed_guess)
+    def check_position_in_matrix(inputted_guess)
       matrix = ''
       unnecessary_char = ''
       (0...LENGTH_SECRET_CODE).reverse_each do |index|
-        next unless inputed_guess[index] == @secret_code[index]
+        next unless inputted_guess[index] == @secret_code[index]
 
         matrix += '+'
-        unnecessary_char += inputed_guess.slice!(index)
+        unnecessary_char += inputted_guess.slice!(index)
       end
-      [matrix, unnecessary_char, inputed_guess]
+      check_for_inclusion_in_matrix(inputted_guess, matrix, unnecessary_char)
     end
 
-    def check_for_inclusion_in_matrix(matrix, unnecessary_char, inputed_guess)
-      unless inputed_guess.empty?
-        inputed_guess.each_char do |char|
+    def check_for_inclusion_in_matrix(inputted_guess, matrix = '', unnecessary_char = '')
+      unless inputted_guess.empty?
+        inputted_guess.each_char do |char|
           next unless @secret_code.include?(char) && !unnecessary_char.include?(char)
 
           matrix += '-'
-          inputed_guess.delete!(char)
+          inputted_guess.delete!(char)
           unnecessary_char += char
         end
       end
       matrix
-    end
-
-    def get_total_results(games)
-      games.group_by(&:name).transform_values do |grouped_games|
-        { attemts: grouped_games.collect(&:attempts).sum, hints: grouped_games.collect(&:hints).sum }
-      end
-    end
-
-    def grouping_statistics(games)
-      total_results = get_total_results(games)
-      games.map.with_index do |game, index, name = game.name|
-        [index + 1, name, game.difficulty, total_results[name][:attemts], game.attempts, total_results[name][:hints],
-         game.hints]
-      end
     end
   end
 end

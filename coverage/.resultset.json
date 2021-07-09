@@ -1,20 +1,29 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/nazar/RubyCourse/codebreaker/lib/codebreaker.rb": {
+      "/home/nazar/Internships/codebreaker/lib/codebreaker/version.rb": {
         "lines": [
           null,
           null,
           1,
           1,
-          null,
-          1,
-          1,
-          null,
           null
         ]
       },
-      "/home/nazar/RubyCourse/codebreaker/lib/codebreaker/game.rb": {
+      "/home/nazar/Internships/codebreaker/lib/codebreaker.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/nazar/Internships/codebreaker/lib/codebreaker/game.rb": {
         "lines": [
           1,
           1,
@@ -35,11 +44,11 @@
           null,
           null,
           1,
-          51,
-          51,
-          51,
-          51,
-          51,
+          50,
+          50,
+          50,
+          50,
+          50,
           null,
           null,
           1,
@@ -80,11 +89,6 @@
           null,
           null,
           1,
-          14,
-          1,
-          null,
-          null,
-          1,
           null,
           1,
           45,
@@ -92,8 +96,8 @@
           45,
           180,
           null,
-          32,
-          32,
+          43,
+          43,
           null,
           45,
           null,
@@ -101,7 +105,7 @@
           1,
           45,
           44,
-          148,
+          137,
           null,
           12,
           12,
@@ -111,24 +115,10 @@
           45,
           null,
           null,
-          1,
-          1,
-          4,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          13,
-          null,
-          null,
-          null,
-          null,
           null
         ]
       },
-      "/home/nazar/RubyCourse/codebreaker/lib/codebreaker/validation/errors.rb": {
+      "/home/nazar/Internships/codebreaker/lib/codebreaker/validation/errors.rb": {
         "lines": [
           1,
           1,
@@ -145,7 +135,7 @@
           null
         ]
       },
-      "/home/nazar/RubyCourse/codebreaker/lib/codebreaker/validation/validatable.rb": {
+      "/home/nazar/Internships/codebreaker/lib/codebreaker/validation/validatable.rb": {
         "lines": [
           1,
           1,
@@ -160,8 +150,37 @@
           null,
           null
         ]
+      },
+      "/home/nazar/Internships/codebreaker/lib/codebreaker/statistics.rb": {
+        "lines": [
+          null,
+          1,
+          1,
+          1,
+          14,
+          1,
+          null,
+          null,
+          1,
+          1,
+          4,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          13,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1613133718
+    "timestamp": 1625819137
   }
 }

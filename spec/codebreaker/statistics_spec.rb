@@ -1,6 +1,5 @@
 module Codebreaker
-  RSpec.describe Game do
-    let(:game) { Game.new }
+  RSpec.describe Statistics do
     context '#statistics' do
       it 'returns correct values' do
         test_games = []
@@ -22,7 +21,7 @@ module Codebreaker
           [10, 'name1', 0, 22, 4, 4, 1], [11, 'name4', 0, 12, 9, 1, 0], [12, 'name1', 0, 22, 11, 4, 2],
           [13, 'name3', 0, 24, 13, 0, 0]
         ]
-        expect(game.statistics(test_games)).to eq expected_values
+        expect(Statistics.statistics(test_games)).to eq expected_values
       end
     end
   end
