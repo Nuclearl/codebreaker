@@ -1,6 +1,6 @@
 module Codebreaker
   RSpec.describe Statistics do
-    context '#statistics' do
+    context '.statistics' do
       it 'returns correct values' do
         test_games = []
         [['name1', 4, 1, :easy], ['name1', 3, 0, :medium], ['name1', 4, 1, :hell], ['name1', 11, 2, :easy],
