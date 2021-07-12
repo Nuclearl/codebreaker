@@ -9,6 +9,7 @@ end
 
 require 'bundler/setup'
 require 'codebreaker'
+require 'ffaker'
 
 require_relative '../lib/codebreaker/validation/errors'
 require_relative '../lib/codebreaker/validation/validatable'

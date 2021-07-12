@@ -25,9 +25,10 @@ module Codebreaker
     end
 
     context '#assign_name' do
-      it 'should assign name Tom' do
-        game.assign_name('Tom')
-        expect(game.name).to eq 'Tom'
+      it 'should assign name' do
+        name = FFaker::Name.name
+        game.assign_name(name)
+        expect(game.name).to eq name
       end
     end
   end

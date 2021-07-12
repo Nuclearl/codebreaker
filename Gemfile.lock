@@ -13,6 +13,7 @@ GEM
     fasterer (0.8.3)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
+    ffaker (2.18.0)
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
@@ -63,6 +64,7 @@ PLATFORMS
 DEPENDENCIES
   codebreaker!
   fasterer (~> 0.8.3)
+  ffaker
   rake (~> 13.0)
   rspec
   rubocop (~> 1.7)

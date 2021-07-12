@@ -24,7 +24,6 @@ module Codebreaker
         it "should return #{expected} when the secret key is #{secret_code} and the guess is #{guess}" do
           game.instance_variable_set(:@secret_code, secret_code)
           expect(game.matrix_generator(guess)).to eq expected
-          # allow(game1).to receive(:matrix_generator).with(guess).and_return(expected)
         end
       end
     end

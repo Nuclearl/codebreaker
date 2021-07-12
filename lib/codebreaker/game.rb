@@ -5,7 +5,7 @@ module Codebreaker
   class Game
     include Validatable
 
-    attr_reader :secret_code, :difficulty, :attempts, :hints, :name
+    attr_reader :difficulty, :attempts, :hints, :name
 
     RANGE_SECRET_CODE = (1..6).freeze
     LENGTH_SECRET_CODE = 4
@@ -32,7 +32,7 @@ module Codebreaker
     def matrix_generator(inputted_guess)
       validate_guess!(inputted_guess)
       @attempts += 1
-      check_position_in_matrix(inputted_guess)
+      matrix_method(inputted_guess)
     end
 
     def set_hint
@@ -63,29 +63,28 @@ module Codebreaker
 
     private
 
-    def check_position_in_matrix(inputted_guess)
-      matrix = ''
-      unnecessary_char = ''
-      (0...LENGTH_SECRET_CODE).reverse_each do |index|
-        next unless inputted_guess[index] == @secret_code[index]
+    def matrix_method(inputted_guess)
+      inputted_guess, matrix, unnecessary_char = check_position_in_matrix(inputted_guess)
+      _, matrix, = check_for_inclusion_in_matrix(inputted_guess, matrix, unnecessary_char)
+      matrix
+    end
 
+    def check_position_in_matrix(inputted_guess, matrix = '', unnecessary_char = '')
+      (0...LENGTH_SECRET_CODE).select { |index| inputted_guess[index] == @secret_code[index] }.reverse_each do |index|
         matrix += '+'
         unnecessary_char += inputted_guess.slice!(index)
       end
-      check_for_inclusion_in_matrix(inputted_guess, matrix, unnecessary_char)
+      [inputted_guess, matrix, unnecessary_char]
     end
 
     def check_for_inclusion_in_matrix(inputted_guess, matrix = '', unnecessary_char = '')
-      unless inputted_guess.empty?
-        inputted_guess.each_char do |char|
-          next unless @secret_code.include?(char) && !unnecessary_char.include?(char)
-
+      inputted_guess.each_char do |char|
+        if @secret_code.include?(char) && !unnecessary_char.include?(char)
           matrix += '-'
-          inputted_guess.delete!(char)
           unnecessary_char += char
         end
       end
-      matrix
+      [inputted_guess, matrix, unnecessary_char]
     end
   end
 end
