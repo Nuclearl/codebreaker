@@ -10,10 +10,8 @@ module Codebreaker
         expect(game.instance_variable_get(:@secret_code)).to include game.set_hint
       end
 
-      it 'should return empty if used 4 hint' do
-        game.set_hint
-        game.set_hint
-        game.set_hint
+      it 'should return empty if used hint' do
+        game.instance_variable_set(:@available_hints, '1')
         game.set_hint
 
         expect(game.set_hint).to eq ' '
