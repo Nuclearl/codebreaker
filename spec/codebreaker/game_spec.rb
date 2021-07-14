@@ -13,7 +13,7 @@ module Codebreaker
       end
 
       it 'saves 4 numbers secret code' do
-        expect(game.instance_variable_get(:@secret_code).size).to eq 4
+        expect(game.instance_variable_get(:@secret_code).size).to eq Game::LENGTH_SECRET_CODE
       end
 
       it 'saves secret code with numbers from 1 to 6' do
