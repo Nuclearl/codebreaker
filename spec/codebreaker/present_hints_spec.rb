@@ -11,12 +11,12 @@ module Codebreaker
     end
 
     it 'should return true if hint was not use' do
-      expect(game.present_hints).to be_truthy
+      expect(game.present_hints?).to be_truthy
     end
 
     it 'should return false if hint was use' do
-      game.set_hint
-      expect(game.present_hints).to be_falsey
+      game.use_hint
+      expect(game.present_hints?).to be_falsey
     end
   end
 

@@ -7,7 +7,7 @@ module Codebreaker
 
     attr_reader :difficulty, :attempts, :hints, :name
 
-    RANGE_SECRET_CODE = (1..6).freeze
+    RANGE_SECRET_CODE = (1..6).to_a.freeze
     LENGTH_SECRET_CODE = 4
 
     DIFFICULTIES = {
@@ -25,7 +25,7 @@ module Codebreaker
     end
 
     def start
-      @secret_code = RANGE_SECRET_CODE.map(&:to_s).sample(LENGTH_SECRET_CODE).join
+      @secret_code = RANGE_SECRET_CODE.sample(LENGTH_SECRET_CODE).join
       @available_hints = @secret_code.dup
     end
 
@@ -35,7 +35,7 @@ module Codebreaker
       matrix_method(inputted_guess)
     end
 
-    def set_hint
+    def use_hint
       return ' ' if @available_hints.empty?
 
       hint = @available_hints.chars.sample
@@ -53,11 +53,11 @@ module Codebreaker
       @name = name
     end
 
-    def present_hints
+    def present_hints?
       @hints < DIFFICULTIES.values[difficulty][:hints]
     end
 
-    def present_attempts
+    def present_attempts?
       @attempts < DIFFICULTIES.values[difficulty][:attempts]
     end
 

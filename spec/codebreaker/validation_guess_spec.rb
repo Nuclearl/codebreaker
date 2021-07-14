@@ -4,11 +4,11 @@ RSpec.describe Validatable do
   context '#validate_guess' do
     context 'LengthError' do
       it 'should raise LengthError if guess length is five' do
-        expect { dummy_class.validate_guess!('11111') }.to raise_error Errors::LengthError
+        expect { dummy_class.validate_guess!('11111') }.to raise_error Errors::InputError
       end
 
       it 'should raise LengthError if guess length is three' do
-        expect { dummy_class.validate_guess!('111') }.to raise_error Errors::LengthError
+        expect { dummy_class.validate_guess!('111') }.to raise_error Errors::InputError
       end
     end
   end

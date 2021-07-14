@@ -12,12 +12,12 @@ module Codebreaker
 
     context '#present_attempts' do
       it 'should return true if attempt was not use' do
-        expect(game.present_attempts).to be_truthy
+        expect(game.present_attempts?).to be_truthy
       end
 
       it 'should return false if attempt was use' do
         game.matrix_generator('1111')
-        expect(game.present_attempts).to be_falsey
+        expect(game.present_attempts?).to be_falsey
       end
     end
   end
