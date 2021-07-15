@@ -2,7 +2,7 @@ module Validatable
   include Errors
 
   def validate_name!(name)
-    raise LengthError unless (3..20).include?(name.length)
+    raise LengthError unless (3..20).cover?(name.length)
   end
 
   def validate_guess!(guess)

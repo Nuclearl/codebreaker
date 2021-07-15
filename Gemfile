@@ -13,4 +13,4 @@ gem 'fasterer', '~> 0.8.3'
 
 gem 'simplecov', require: false, group: :test
 
-gem 'ffaker', '~> 2.18'
+gem 'ffaker', '~> 2.18.0'
