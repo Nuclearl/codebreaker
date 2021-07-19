@@ -64,7 +64,7 @@ PLATFORMS
 DEPENDENCIES
   codebreaker!
   fasterer (~> 0.8.3)
-  ffaker (~> 2.18)
+  ffaker (~> 2.18.0)
   rake (~> 13.0)
   rspec
   rubocop (~> 1.7)
