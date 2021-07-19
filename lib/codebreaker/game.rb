@@ -61,6 +61,10 @@ module Codebreaker
       @attempts < DIFFICULTIES.values[difficulty][:attempts]
     end
 
+    def available_difficulties
+      DIFFICULTIES
+    end
+
     private
 
     def matrix_method(inputted_guess)
