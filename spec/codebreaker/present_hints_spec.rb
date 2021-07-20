@@ -1,9 +1,8 @@
 module Codebreaker
   RSpec.shared_examples 'callable hints' do
-    let(:game) do
-      stub_const('Codebreaker::Game::DIFFICULTIES', { difficulty => { attempts: 1, hints: 1 } })
-      Game.new
-    end
+    before { stub_const('Codebreaker::Game::DIFFICULTIES', { difficulty => { attempts: 1, hints: 1 } }) }
+
+    let(:game) { Game.new }
 
     before(:each) do
       game.start

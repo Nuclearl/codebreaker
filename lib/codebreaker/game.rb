@@ -5,7 +5,7 @@ module Codebreaker
   class Game
     include Validatable
 
-    attr_reader :difficulty, :attempts, :hints, :name
+    attr_reader :secret_code, :difficulty, :attempts, :hints, :name
 
     RANGE_SECRET_CODE = (1..6).to_a.freeze
     LENGTH_SECRET_CODE = 4
