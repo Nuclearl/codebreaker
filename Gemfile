@@ -11,6 +11,6 @@ gem 'rubocop', '~> 1.7'
 
 gem 'fasterer', '~> 0.8.3'
 
-gem 'simplecov', require: false, group: :test
+gem 'simplecov', '~> 0.21.2'
 
 gem 'ffaker', '~> 2.18.0'

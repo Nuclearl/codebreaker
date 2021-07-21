@@ -32,7 +32,7 @@ module Codebreaker
     def matrix_generator(inputted_guess)
       validate_guess!(inputted_guess)
       @attempts += 1
-      matrix_method(inputted_guess)
+      matrix(inputted_guess)
     end
 
     def use_hint
@@ -67,13 +67,15 @@ module Codebreaker
 
     private
 
-    def matrix_method(inputted_guess)
+    def matrix(inputted_guess)
       inputted_guess, matrix, unnecessary_char = check_position_in_matrix(inputted_guess)
       _, matrix, = check_for_inclusion_in_matrix(inputted_guess, matrix, unnecessary_char)
       matrix
     end
 
-    def check_position_in_matrix(inputted_guess, matrix = '', unnecessary_char = '')
+    def check_position_in_matrix(inputted_guess)
+      matrix = ''
+      unnecessary_char = ''
       (0...LENGTH_SECRET_CODE).select { |index| inputted_guess[index] == @secret_code[index] }.reverse_each do |index|
         matrix += '+'
         unnecessary_char += inputted_guess.slice!(index)

@@ -43,7 +43,7 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.7.0)
+    rubocop-ast (1.8.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
     ruby_parser (3.16.0)
@@ -68,7 +68,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec
   rubocop (~> 1.7)
-  simplecov
+  simplecov (~> 0.21.2)
 
 BUNDLED WITH
    2.2.22
