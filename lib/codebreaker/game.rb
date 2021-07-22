@@ -44,11 +44,11 @@ module Codebreaker
       hint
     end
 
-    def assign_difficulty(difficulty)
+    def difficulty(difficulty)
       @difficulty = DIFFICULTIES.keys.index(difficulty)
     end
 
-    def assign_name(name)
+    def name(name)
       validate_name!(name)
       @name = name
     end
