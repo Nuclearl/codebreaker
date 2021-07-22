@@ -6,7 +6,7 @@ module Codebreaker
 
     before(:each) do
       game.start
-      game.assign_difficulty(difficulty)
+      game.difficulty = difficulty
     end
 
     context '#present_attempts' do

@@ -8,8 +8,8 @@ module Codebreaker
          ['name3', 4, 0, :hell], ['name3', 7, 0, :medium], ['name3', 13, 0, :easy], ['name4', 3, 1, :medium],
          ['name4', 9, 0, :easy]].each do |name, attempts, hints, difficulty|
           test_game = Game.new
-          test_game.assign_difficulty(difficulty)
-          test_game.assign_name(name)
+          test_game.difficulty = difficulty
+          test_game.name = name
           test_game.instance_variable_set(:@attempts, attempts)
           test_game.instance_variable_set(:@hints, hints)
           test_games << test_game
